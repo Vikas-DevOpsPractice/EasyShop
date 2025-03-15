@@ -1,20 +1,14 @@
-# The service will route traffic to the pods that have the label app: easyshop.
-# The service will listen on port 80 and forward traffic to the pods on port 80. 
-# The service will be named easyshop-service.
-# The service will have the label app: easyshop.
-# The service will be created in the same namespace as the deployment.
-
 apiVersion: v1
 kind: Service
 metadata:
   name: easyshop-service
   namespace: easyshop
 spec:
-  type: NodePort
+  type: NodePort # Or ClusterIP if not exposing externally
   selector:
     app: easyshop
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 3000
-    nodePort: 30000
+    port: 80 # Exposed service port
+    targetPort: 3000 # Change this to match your app's internal port
+    nodePort: 30000 # Only needed if using NodePort
