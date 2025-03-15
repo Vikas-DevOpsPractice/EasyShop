@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:4.4.6 # Use a specific version of MongoDB
+        image: mongo:latest # Use a specific version of MongoDB
         ports:
         - containerPort: 27017
         volumeMounts:
