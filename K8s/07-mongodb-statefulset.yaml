@@ -5,7 +5,7 @@ metadata:
   namespace: easyshop
 spec:
   serviceName: mongodb-service
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mongodb
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:latest # Use the latest version of MongoDB
+        image: mongo:4.4.6 # Use a specific version of MongoDB
         ports:
         - containerPort: 27017
         volumeMounts:
@@ -25,11 +25,11 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "250m"
+            cpu: "0.25"
           limits:
             memory: "512Mi"
-            cpu: "500m"
-  volumes:
-  - name: mongodb-storage
-    persistentVolumeClaim:
-      claimName: mongodb-pvc
+            cpu: "0.5"
+      volumes:
+      - name: mongodb-storage
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
