@@ -4,8 +4,19 @@ metadata:
   name: easyshop-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+
 spec:
   rules:
-  - host: easyshop.local
+  - host: "18.212.75.173.nip.io"
     http:
       paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: easyshop-service
+            port:
+              number: 80
