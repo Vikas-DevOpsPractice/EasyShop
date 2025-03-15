@@ -1,0 +1,20 @@
+# The service will route traffic to the pods that have the label app: easyshop.
+# The service will listen on port 80 and forward traffic to the pods on port 80. 
+# The service will be named easyshop-service.
+# The service will have the label app: easyshop.
+# The service will be created in the same namespace as the deployment.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: easyshop-service
+  labels:
+    app: easyshop
+spec:
+  selector:
+    app: easyshop
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

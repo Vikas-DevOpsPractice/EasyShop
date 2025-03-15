@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easyshop-deployment
+  labels:
+    app: easyshop
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: easyshop
+  template:
+    metadata:
+      labels:
+        app: easyshop
+    spec:
+      containers:
+      - name: easyshop
+        image: easyshop:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: easyshop-persistent-storage
+          mountPath: /app/static
+      volumes:
+      - name: easyshop-persistent-storage
+        persistentVolumeClaim:
+          claimName: easyshop-pvc
