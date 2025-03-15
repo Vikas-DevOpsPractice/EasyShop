@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: easyshop-migration-job
+  name: db-migration-job
   labels:
     app: easyshop
 spec:
@@ -12,9 +12,9 @@ spec:
     spec:
       containers:
       - name: easyshop-migration-job
-        image: easyshop:latest
-        command: [ "python", "manage.py", "migrate" ]
-      restartPolicy: Never
-  backoffLimit: 4
-  completions: 1
-  parallelism: 1
+        image: vmsurve/easy-shop-migration:latest
+        imagePullPolicy: Always
+        env:
+        - name: MONGODB_URI
+          value: mongodb://mongodb-service:27017/easyshop
+      restartPolicy: OnFailure

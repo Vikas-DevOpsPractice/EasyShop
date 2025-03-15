@@ -6,10 +6,9 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 20Gi
+    storage: 5Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
   hostPath:
-    path: "/var/lib/docker/volumes/mongodb-data" # Kind’s default storage path
+    path: "/data/mongodb" # Kind’s default storage path
