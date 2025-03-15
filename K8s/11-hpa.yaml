@@ -7,15 +7,19 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: easyshop-deployment
-  minReplicas: 1
-  maxReplicas: 10
+    name: easyshop
+  minReplicas: 2
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
       name: cpu
-      targetAverageUtilization: 50
+      target:
+        type: Utilization
+        averageUtilization: 50
   - type: Resource
     resource:
       name: memory
-      targetAverageUtilization: 50
+      target:
+        type: Utilization
+        averageUtilization: 50
