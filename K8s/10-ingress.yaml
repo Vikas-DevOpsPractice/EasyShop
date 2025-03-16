@@ -5,10 +5,10 @@ metadata:
   namespace: easyshop
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/proxy-body-size: 50m s
+    nginx.ingress.kubernetes.io/proxy-body-size: 50ms
 spec:
   rules:
-  - host: "18.212.75.173.nip.io"
+  - host: "3.84.224.102.nip.io"
     http:
       paths:
       - path: /
