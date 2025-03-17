@@ -1,0 +1,24 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: mongodb-vpa
+  namespace: easyshop
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: mongodb
+  updatePolicy:
+    updateMode: "Auto"  
+  resourcePolicy:
+    containerPolicies:
+      - containerName: mongodb
+        minAllowed:
+          memory: 1Gi
+          cpu: 500m
+        maxAllowed:
+          memory: 16Gi
+          cpu: 4
+        controlledResources: ["memory", "cpu"]  # Resources controlled by VPA
+        allowedIncreasePercentage: 50 
+        allowedDecreasePercentage: 30
